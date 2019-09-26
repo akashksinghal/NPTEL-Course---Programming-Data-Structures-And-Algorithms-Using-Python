@@ -1,45 +1,30 @@
-"""Write a function intreverse(n) that takes as input a positive 
-integer n and returns the integer obtained by reversing the digits in n.
-Here are some examples of how your function should work.
-  >>> intreverse(783)
-  387
-  >>> intreverse(242789)
-  987242
-  >>> intreverse(3)
-  3
-"""
-def intreverse(n):
-  ans = 0
-  while n > 0:
-	(d,n) = (n%10,n//10)
-	ans = 10*ans + d
-  return(ans)
-
-def matched(s):
-  nested = 0
-  for i in range(0,len(s)):
-	if s[i] == "(":
-	   nested = nested+1
-	elif s[i] == ")":
-	   nested = nested-1
-	   if nested < 0:
-		  return(False)    
-  return(nested == 0)
-
-def factors(n):
-  factorlist = []
-  for i in range(1,n+1):
-	if n%i == 0:
-	  factorlist = factorlist + [i]
-  return(factorlist)
-
-def isprime(n):
-  return(factors(n) == [1,n])
-
-
-def sumprimes(l):
-  sum = 0
-  for i in range(0,len(l)):
-	if isprime(l[i]):
-	  sum = sum+l[i]
-  return(sum)
+#Write a function intreverse(n) that takes as input a positive integer n and returns the integer obtained by reversing the digits in n.
+def intreverse(var):
+    reverse=0
+    while(var>0):
+        rem=var%10
+        reverse=(reverse*10)+rem
+        var=var//10
+    return reverse
+#Write a function sumprimes(l) that takes as input a list of integers l and retuns the sum of all the prime numbers in l.
+def sumprimes(liss):
+    ssum=0
+    for i in liss:
+        flag=True
+        if i>0:
+            for j in range(2,int((i**0.5)+1)):
+                if (i%j)==0:
+                    flag=False
+            if flag !=False and i!=1:
+                ssum=ssum+i
+#Write a function matched(s) that takes as input a string s and checks if the brackets "(" and ")" in s are matched: that is, every "(" has a matching ")" after it and every ")" has a matching "(" before it. Your function should ignore all other symbols that appear in s. Your function should return True if s has matched brackets and False if it does not.
+def matched(str):
+    count = 0
+    for i in str:
+        if i == "(":
+            count += 1
+        elif i == ")":
+            count -= 1
+        if count < 0:
+            return False
+    return count == 0
